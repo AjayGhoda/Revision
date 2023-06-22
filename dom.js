@@ -22,11 +22,42 @@
 // document.querySelector('.list-group-item:nth-child(3)').style.visibility = "hidden";
 
 //used query selector all here 
-const secondlistitem = document.querySelectorAll('li');
-secondlistitem[2].style.color = 'green';
-const odd = document.querySelectorAll('li:nth-child(odd)');
-for(let i =0;i<odd.length;i++){
-    odd[i].style.backgroundColor = 'red';
-}
+// const secondlistitem = document.querySelectorAll('li');
+// secondlistitem[2].style.color = 'green';
+// const odd = document.querySelectorAll('li:nth-child(odd)');
+// for(let i =0;i<odd.length;i++){
+//     odd[i].style.backgroundColor = 'red';
+// }
+
+//dommanipulation crash course part 2, travesing the dom 
+const text = document.createTextNode('hello');
+const container = document.querySelector('header .container');
+const h1 = document.querySelector('header h1');
+container.insertBefore(text,h1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
