@@ -40,13 +40,19 @@ let form = document.getElementById('addForm');
 form.addEventListener('submit', additems);
 let ulitem = document.getElementById('items');  
 ulitem.addEventListener('click', removeitem);
+let filterme = document.getElementById('filter');
+filterme.addEventListener('keyup',filteritems);
+
 
 function additems(e){
     e.preventDefault();
     let liitem = document.createElement('li');
     liitem.className = 'list-group-item';
     let inputext = document.getElementById('item').value;
+    let textdec = document.getElementById('item-description').value;
     liitem.appendChild(document.createTextNode(inputext));
+    let description = document.createTextNode(textdec);
+    liitem.appendChild(description);
     ulitem.appendChild(liitem);
     let delbutton = document.createElement('button');
     delbutton.className = 'btn btn-danger btn-sm float-right delete';
@@ -64,6 +70,25 @@ function removeitem (e){
         let li = e.target.parentElement;
         ulitem.removeChild(li);
     }
+}
+
+//now a description and search that description 
+
+function filteritems(e){
+let text = e.target.value.toLowerCase();
+let getitems = ulitem.getElementsByTagName('li');
+
+Array.from(getitems).forEach((a)=>{
+let itemname = a.firstChild.textContent;
+let descname = a.childNodes[1].textContent;
+// console.log(descname);
+if(itemname.toLowerCase().indexOf(text) != -1 || descname.toLowerCase().indexOf(text) != -1 ){
+a.style.display = 'block';
+}else {
+    a.style.display = 'none';
+}
+});
+
 }
 
 
