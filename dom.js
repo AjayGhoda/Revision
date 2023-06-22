@@ -30,10 +30,41 @@
 // }
 
 //dommanipulation crash course part 2, travesing the dom 
-const text = document.createTextNode('hello');
-const container = document.querySelector('header .container');
-const h1 = document.querySelector('header h1');
-container.insertBefore(text,h1);
+// const text = document.createTextNode('hello');
+// const container = document.querySelector('header .container');
+// const h1 = document.querySelector('header h1');
+// container.insertBefore(text,h1);
+
+//with delete button 
+let form = document.getElementById('addForm');
+form.addEventListener('submit', additems);
+let ulitem = document.getElementById('items');  
+ulitem.addEventListener('click', removeitem);
+
+function additems(e){
+    e.preventDefault();
+    let liitem = document.createElement('li');
+    liitem.className = 'list-group-item';
+    let inputext = document.getElementById('item').value;
+    liitem.appendChild(document.createTextNode(inputext));
+    ulitem.appendChild(liitem);
+    let delbutton = document.createElement('button');
+    delbutton.className = 'btn btn-danger btn-sm float-right delete';
+    delbutton.appendChild(document.createTextNode('X'));
+    liitem.appendChild(delbutton);
+    let editbtn = document.createElement('btn');
+    editbtn.className = 'btn btn-primary btn-sm float-right delete';
+    editbtn.appendChild(document.createTextNode('Edit'));
+    liitem.appendChild(editbtn);
+    
+}
+
+function removeitem (e){
+    if(e.target.classList.contains('delete')){
+        let li = e.target.parentElement;
+        ulitem.removeChild(li);
+    }
+}
 
 
 
