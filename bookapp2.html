@@ -12,21 +12,33 @@
         <label >Email</label>
         <input type="email" name="gmail">
         <label>Number</label>
-        <input type="number" name="'phone">
+        <input type="tel" name="phone">
         <button>Submit</button>
     </form>
+    <ul id="listitems"></ul>
     <script>
         function saveToLocal(event){
             event.preventDefault();
             let name = event.target.username.value;
             let emailid = event.target.gmail.value;
+            let number = event.target.phone.value;
             let obj = {
                 name : name,
-                mail : emailid
+                mail : emailid,
+                phone: number
             }
+        
             let stringobj = JSON.stringify(obj);
-            localStorage.setItem('1',stringobj);
+            localStorage.setItem(emailid,stringobj);
+            const ulitem = document.getElementById('listitems');
+            const liitem = document.createElement('li');
+            const text = document.createTextNode(name+ " " + emailid + " " + number);
+            ulitem.appendChild(liitem);
+            liitem.appendChild(text);
         }
+        
+
+
     </script>
 </body>
 </html>
