@@ -20,7 +20,12 @@
             event.preventDefault();
             let name = event.target.username.value;
             let emailid = event.target.gmail.value;
-            localStorage.setItem(emailid,name);
+            let obj = {
+                name : name,
+                mail : emailid
+            }
+            let stringobj = JSON.stringify(obj);
+            localStorage.setItem('1',stringobj);
         }
     </script>
 </body>
