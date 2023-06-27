@@ -8,11 +8,11 @@
 <body>
     <form onsubmit="saveToLocal(event)">
         <label>Name</label>
-        <input type="text" name="username">
+        <input id="naam" type="text" name="username">
         <label>Email</label>
-        <input type="email" name="gmail">
+        <input id="patta" type="email" name="gmail">
         <label>Number</label>
-        <input type="tel" name="phone">
+        <input id="nambar" type="tel" name="phone">
         <button value="submit">Submit</button>
     </form>
     <ul id="listitems"></ul>
@@ -39,7 +39,6 @@
             liitem.appendChild(text);
 
             const button = document.createElement('button');
-            button.className = 'delete';
             const deltext = document.createTextNode('Delete');
             button.appendChild(deltext);
             liitem.appendChild(button);
@@ -48,6 +47,22 @@
                 ulitem.removeChild(liitem);
                 localStorage.removeItem(emailid);
             });
+
+            const editbutton = document.createElement('BUTTON');
+            const edittext = document.createTextNode('Edit');
+            editbutton.appendChild(edittext);
+            liitem.appendChild(editbutton);
+
+            editbutton.addEventListener('click', function(){
+                ulitem.removeChild(liitem);
+                localStorage.removeItem(emailid);
+                document.getElementById('naam').value = name;
+                document.getElementById('patta').value = emailid;
+                document.getElementById('nambar').value = number;
+
+
+            })
+
         }
     </script>
 </body>
