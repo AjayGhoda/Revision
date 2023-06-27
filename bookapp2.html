@@ -9,36 +9,46 @@
     <form onsubmit="saveToLocal(event)">
         <label>Name</label>
         <input type="text" name="username">
-        <label >Email</label>
+        <label>Email</label>
         <input type="email" name="gmail">
         <label>Number</label>
         <input type="tel" name="phone">
-        <button>Submit</button>
+        <button value="submit">Submit</button>
     </form>
     <ul id="listitems"></ul>
     <script>
-        function saveToLocal(event){
+        const ulitem = document.getElementById('listitems');
+
+        function saveToLocal(event) {
             event.preventDefault();
             let name = event.target.username.value;
             let emailid = event.target.gmail.value;
             let number = event.target.phone.value;
             let obj = {
-                name : name,
-                mail : emailid,
+                name: name,
+                mail: emailid,
                 phone: number
             }
-        
+
             let stringobj = JSON.stringify(obj);
-            localStorage.setItem(emailid,stringobj);
-            const ulitem = document.getElementById('listitems');
+            localStorage.setItem(emailid, stringobj);
+
             const liitem = document.createElement('li');
-            const text = document.createTextNode(name+ " " + emailid + " " + number);
+            const text = document.createTextNode(name + " " + emailid + " " + number);
             ulitem.appendChild(liitem);
             liitem.appendChild(text);
+
+            const button = document.createElement('button');
+            button.className = 'delete';
+            const deltext = document.createTextNode('Delete');
+            button.appendChild(deltext);
+            liitem.appendChild(button);
+
+            button.addEventListener('click', function () {
+                ulitem.removeChild(liitem);
+                localStorage.removeItem(emailid);
+            });
         }
-        
-
-
     </script>
 </body>
 </html>
